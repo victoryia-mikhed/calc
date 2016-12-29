@@ -28,8 +28,10 @@ public class LoginPage extends Page {
     private WebElement buttonSubmit;
 
     @FindBy(xpath = "/html/body/div[13]/div/div/ul/li[3]/div/button")
-    private WebElement linkLoggedInUser;
+    private WebElement linkLoggedIn;
 
+    @FindBy(xpath = "/html/body/div[11]/div[1]/div[2]/div/div/div[1]/div[2]/div[2]/form[1]/div[1]/div[3]")
+    private WebElement failToLogin;
 
     @Override
     public void openPage() {
@@ -47,6 +49,11 @@ public class LoginPage extends Page {
     }
 
     public String getLoggedInUserName() {
-        return linkLoggedInUser.getText();
+        return linkLoggedIn.getText();
+    }
+
+    public String getFailLoggedInUserName() throws InterruptedException {
+        Thread.sleep(3000);
+        return failToLogin.getText();
     }
 }
