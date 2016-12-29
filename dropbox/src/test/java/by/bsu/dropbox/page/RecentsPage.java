@@ -29,14 +29,11 @@ public class RecentsPage extends Page {
     }
 
 
-    public void goToRecents() {
-        recents.click();
-
-        logger.info("Url changed to https://www.dropbox.com/recents");
-    }
-
 	//checks if color of the Recents link changed to #3D464D
-    public boolean isOnRecentsPage(Webdriver driver) {
+    public boolean isOnRecentsPage() {
+        
+        recents.click();
+        logger.info("Url changed to https://www.dropbox.com/recents");
         if (driver.findElement(By.xpath(XPATH)).getCssValue("color") == "#3D464D") {
 			return true;
 		}

@@ -29,14 +29,12 @@ public class HomePage extends Page {
     }
 
 
-    public void select() {
-        fileLink.click();
-
-        logger.info("File selected");
-    }
 
 	//checks if element with buttons exists
-    public String isSelectedSuccessfully(Webdriver driver) {
+    public boolean isSelectedSuccessfully(Webdriver driver) {
+        fileLink.click();
+        logger.info("File selected");
+
         if (!driver.findElement(By.xpath(XPATH)).isEmpty()) {
 			return true;
 		}

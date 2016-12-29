@@ -36,15 +36,11 @@ public class DeletedPage extends Page {
         logger.info("Home page opened");
     }
 
-
-    public void goToDeleted() {
-        deletedLink.click();
-	
-        logger.info("Url changed to https://www.dropbox.com/deleted_files");
-    }
 	
 	//selects file to be recovered then click recover button
-	public boolean isRecoveredFile(Webdriver driver) {
+	public boolean isRecoveredFile() {
+		deletedLink.click();
+        logger.info("Url changed to https://www.dropbox.com/deleted_files");
 		
 		fileToRecover.click();
 		driver.manage().timeouts().implicitlyWait(3000, TimeUnit.SECONDS);

@@ -31,4 +31,33 @@ public class Step {
         LoginPage loginPage = new LoginPage(driver);
         return (!loginPage.getLoggedInUserName().trim().toLowerCase().isEmpty());
     }
+
+    public boolean isFailedLoggedIn(String username) throws InterruptedException {
+        LoginPage loginPage = new LoginPage(driver);
+        return (!loginPage.getFailLoggedInUserName().trim().toLowerCase().isEmpty());
+    }
+
+    public boolean selectFile() throws InterruptedException {
+        HomePage homePage = new HomePage(driver);
+        homePage.openPage();
+
+        return homePage.isSelectedSuccessfully();
+    }
+
+    public boolean deleteFile() throws InterruptedException {
+        DeletedPage deletedPage = new DeletedPage(driver);
+        deletedPage.openPage();
+        
+        return deletedPage.isRecoveredFile();
+    }
+
+    public boolean goToRecents() throws InterruptedException {
+        RecentsPage recentsPage = new RecentsPage(driver);
+        recentsPage.openPage()
+
+        return recentsPage.isOnRecentsPage();
+    }
+
+
+
 }
