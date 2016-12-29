@@ -12,6 +12,7 @@ public class DropboxTest {
     private final String USERNAME = "vika_mikhed@mail.ru";
     private final String PASSWORD = "111111qwe";
     private final String FAKE_USERNAME = "unreal@mail.ru";
+    private final String LAST_USED_FILE = "Последние";
 
 
     @BeforeMethod(description = "Init browser")
@@ -26,24 +27,39 @@ public class DropboxTest {
         Assert.assertTrue(step.isLoggedIn(USERNAME));
     }
 
-    @Test(description = "Login to Dropbox")
+    @Test(description = "Bad Login to Dropbox")
     public void oneCantLoginDropbox() throws InterruptedException {
         step.loginDropbox(FAKE_USERNAME, PASSWORD);
         Assert.assertTrue(step.isFailedLoggedIn(FAKE_USERNAME));
     }
-    
-    @Test(description = "Select file")
-    public void oneCanSelectFile() throws InterruptedException {
-        Assert.assertTrue(step.selectFile());
+
+
+    @Test(description = "Logout")
+    public void oneCanLogout() throws InterruptedException {
+        oneCanLoginDropbox();
+        step.logout();
+        Assert.assertTrue(step.isLogOuted());
     }
 
-    @Test(description = "Delete file")
-    public void oneCanDeleteFile() throws InterruptedException {
-        Assert.assertTrue(step.deleteFile());
+
+    @Test(description = "Open notice")
+    public void oneCanOpenNotice() throws InterruptedException {
+        oneCanLoginDropbox();
+        Thread.sleep(2000);
+        step.openNotice();
+        Assert.assertTrue(step.isOpenedNotice());
+
     }
 
-    @Test(description = "Navigate to recents page")
-    public void oneCanGoToRecentsPage() throws InterruptedException {
-        Assert.assertTrue(step.goToRecents());
+    @Test(description = "Open notice")
+    public void oneCanGoToRecent() throws InterruptedException {
+        oneCanLoginDropbox();
+        Thread.sleep(2000);
+        step.goToRecent();
+        Thread.sleep(2000);
+
+        Assert.assertTrue(step.isOnRecent(LAST_USED_FILE));
+
     }
+
 }

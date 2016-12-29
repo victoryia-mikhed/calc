@@ -2,6 +2,7 @@ package by.bsu.dropbox.step;
 
 
 import by.bsu.dropbox.driver.Driver;
+import by.bsu.dropbox.page.HomePage;
 import by.bsu.dropbox.page.LoginPage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -37,27 +38,37 @@ public class Step {
         return (!loginPage.getFailLoggedInUserName().trim().toLowerCase().isEmpty());
     }
 
-    public boolean selectFile() throws InterruptedException {
+    public boolean isLogOuted() throws InterruptedException {
         HomePage homePage = new HomePage(driver);
-        homePage.openPage();
-
-        return homePage.isSelectedSuccessfully();
+        return (homePage.isLogOuted());
     }
 
-    public boolean deleteFile() throws InterruptedException {
-        DeletedPage deletedPage = new DeletedPage(driver);
-        deletedPage.openPage();
-        
-        return deletedPage.isRecoveredFile();
+    public boolean isOpenedNotice() throws InterruptedException {
+        HomePage homePage = new HomePage(driver);
+        return (homePage.isOpenedNotice());
     }
 
-    public boolean goToRecents() throws InterruptedException {
-        RecentsPage recentsPage = new RecentsPage(driver);
-        recentsPage.openPage()
-
-        return recentsPage.isOnRecentsPage();
+    public void openNotice() {
+        HomePage homePage = new HomePage(driver);
+        homePage.openNotice();
     }
 
+    public void goToRecent() {
+        HomePage homePage = new HomePage(driver);
+        homePage.goToRecent();
+    }
 
+    public boolean isOnRecent(String result) throws InterruptedException {
+        HomePage homePage = new HomePage(driver);
+        System.out.println("homePage.isOnRecent().trim()="+homePage.isOnRecent().trim());
+        System.out.println("result="+result);
+        return (homePage.isOnRecent().trim().equals(result));
+    }
+
+    public void logout() {
+        HomePage homePage = new HomePage(driver);
+        homePage.logout();
+
+    }
 
 }
